@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Carrousel 1</title>
+    </head>
+
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        .carousel {
+            width: 100%;
+            overflow: scroll; /* Permite agregar un scroll a esta clase  https://developer.mozilla.org/es/docs/Web/CSS/overflow-y*/
+            padding: 30px;
+            position: relative; /* El elemento es posicionado de acuerdo al flujo normal del documento, y luego es desplazado con relación a sí mismo*/
+        }
+
+        .carousel__container {
+            white-space: nowrap; /* Permite que nuestro contenido se vaya todo a la derecha, recordemos que por defult se alinea un rengon abajo cuando se llega al dinal de la pagina. https://developer.mozilla.org/es/docs/Web/CSS/white-space */
+            margin: 70px 0px;
+            padding-bottom: 10px;
+        }
+
+        .carousel-item {
+            background-color: pink;
+            width: 200px;
+            height: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-right: 10px;
+            display: inline-block;
+            cursor: pointer; /* Con este cursor se mostrara una manita al pasar por encima del Item */
+            transition: 450ms; /* Permite agregar los milisegundos que tarda nuestra transicion */
+            transform-origin: center left; /* Permite alinear la transicion */
+            position: relative;
+        }
+
+        .carousel-item:hover ~ .carousel-item {  /* La virgulilla se obtiene presionando ALT+126 */ /* La virgulilla sirve para indicar que estos estilos se agreguen a mas de un selector */
+            transform: translate3d(100px, 0, 0); /* Con esto, cada que hagamos hover todos nuestros elementos se desplazaran a la derecha */
+        }
+
+        .carousel__container:hover .carousel-item { /* Aqui indicamos que cuando pasemos por encima del container, el ITEM tendran una opacidad menor*/
+            opacity: 0.3;
+        }
+
+        .carousel__container:hover .carousel-item:hover { /* Cuando el containet y el item esten en hover, la escala sera mayor */
+            transform: scale(1.5); /* Con esto aumentamos el tamaño escala de nuestro item */
+            opacity: 1;
+        }
+
+        .carousel-item__img {
+            width: 200px;
+            height: 250px;
+            object-fit: cover; /* Con esta propiedad haces que la imagen no se deforme ya que respetas su tamaño original*/
+        }
+
+        .carousel-item__details {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%); /* Con este valor se pueden realizar degradados o desvanecidos */
+            font-size: 10px;
+            opacity: 0;
+            transition: 450ms opacity;
+            padding: 10px;
+            position: absolute;
+            top: 180px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .carousel-item__details:hover {
+            opacity: 1;
+        }
+
+        .carousel-item__details img {
+            width: 20px;
+        }
+
+        .carousel-item__details--title {
+            font-size: 10px;
+            font-weight: bold;
+            color: #FFFFFF;
+            line-height: 0; /* Espacio entre renglones */
+        }
+
+        .carousel-item__details--subtitle {
+            font-size: 7px;
+            color: #FFFFFF;
+        }
+
+    </style>
+    
+    <body>
+        <section class="carousel">
+            <div class="carousel__container"> <!-- Aqui se tienen todos los ITEMS -->
+                <div class="carousel-item"> <!-- Esto es para un solo ITEM -->
+                    <img class="carousel-item__img" src="https://images.pexels.com/photos/1114425/pexels-photo-1114425.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Imagen Edificio">
+                    <div class="carousel-item__details"> <!-- Este div encerrara todos los detalles de nuestro item como botones o titulo -->
+                        <div> <!-- Este div de agrega porque queremos que las dos imagenes de abajo vaya una seguida de la otra, es decir, esten alineadas a de forma horizontal -->
+                            <img src="./play.png" alt="Play">
+                            <img src="./plus.png" alt="Plus">
+                        </div>
+                        <p class="carousel-item__details--title">Titulo Descriptivo</p>
+                        <p class="carousel-item__details--subtitle">2019 16+ 114 minutos</p>
+                    </div> 
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
